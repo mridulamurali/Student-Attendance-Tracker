@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" id="BorderPane" prefHeight="426.0" prefWidth="565.0"
+            style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="sample.TutorLoginController">
+    <center>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="TOP_RIGHT" prefHeight="348.0" prefWidth="105.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="133.0" layoutY="94.0"
+                               prefHeight="110.0" prefWidth="207.0" text="Email ID   ">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="133.0" layoutY="154.0"
+                               prefHeight="72.0" prefWidth="205.0" text="Password  ">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox prefHeight="348.0" prefWidth="164.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="206.0"/>
+                        <TextField fx:id="textemail" layoutX="235.0" layoutY="89.0" maxHeight="-Infinity"
+                                   maxWidth="-Infinity" prefHeight="26.0" prefWidth="151.0"/>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="66.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="200.0"/>
+                        <PasswordField fx:id="textPwd" layoutX="235.0" layoutY="149.0" maxHeight="-Infinity"
+                                       maxWidth="-Infinity"/>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="27.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="200.0"/>
+                        <Button fx:id="login" layoutX="235.0" layoutY="201.0" mnemonicParsing="false"
+                                onAction="#tutorloginAction" text="Login">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+    <top>
+        <Label alignment="CENTER" prefHeight="78.0" prefWidth="174.0" text="Tutor Login Page"
+               BorderPane.alignment="CENTER">
+            <font>
+                <Font name="Century" size="12.0"/>
+            </font>
+        </Label>
+    </top>
+    <left>
+        <VBox prefHeight="348.0" prefWidth="154.0" BorderPane.alignment="CENTER"/>
+    </left>
+    <right>
+        <VBox prefHeight="348.0" prefWidth="125.0" BorderPane.alignment="CENTER"/>
+    </right>
+</BorderPane>

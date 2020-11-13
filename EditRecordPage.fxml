@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="433.0" prefWidth="600.0" style="-fx-background-color: azure;"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.EditRecordController">
+    <top>
+        <Label fx:id="Title" alignment="CENTER" prefHeight="46.0" prefWidth="227.0"
+               text="Edit Attendance Records For CSE-G2" BorderPane.alignment="TOP_CENTER">
+            <font>
+                <Font name="Century" size="12.0"/>
+            </font>
+        </Label>
+    </top>
+    <center>
+        <HBox alignment="CENTER" prefHeight="313.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="354.0" prefWidth="163.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="156.0"
+                               text="Roll Number of Student" wrapText="true">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="156.0" text="Select Subject"
+                               wrapText="true">
+                            <font>
+                                <Font name="Century" size="13.0"/>
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="156.0" text="Select Month"
+                               wrapText="true">
+                            <font>
+                                <Font name="Century" size="13.0"/>
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="163.0"
+                               text="Parameters to be Altered" wrapText="true">
+                            <font>
+                                <Font name="Century" size="13.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox prefHeight="354.0" prefWidth="206.0">
+                    <children>
+                        <TextField fx:id="rollno" prefHeight="23.0" prefWidth="122.0">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                            <VBox.margin>
+                                <Insets right="45.0"/>
+                            </VBox.margin>
+                        </TextField>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="17.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="145.0"/>
+                        <ChoiceBox fx:id="subject" prefHeight="26.0" prefWidth="155.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="19Z301"/>
+                                    <String fx:value="19Z302"/>
+                                    <String fx:value="19Z303"/>
+                                    <String fx:value="19Z304"/>
+                                    <String fx:value="19Z305"/>
+                                    <String fx:value="19Z306"/>
+                                    <String fx:value="19Z310"/>
+                                    <String fx:value="19Z311"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="17.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="146.0"/>
+                        <ChoiceBox fx:id="month" prefHeight="26.0" prefWidth="154.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="October"/>
+                                    <String fx:value="September"/>
+                                    <String fx:value="August"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="17.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="146.0"/>
+                        <SplitPane fx:id="splitpane" dividerPositions="0.47160243407707914" prefHeight="141.0"
+                                   prefWidth="206.0" style="-fx-background-color: azure;">
+                            <items>
+                                <VBox prefHeight="172.0" prefWidth="95.0">
+                                    <children>
+                                        <CheckBox fx:id="pcheck" contentDisplay="RIGHT" mnemonicParsing="false"
+                                                  onAction="#showptext" prefHeight="33.0" prefWidth="88.0"
+                                                  text="Present">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </CheckBox>
+                                        <CheckBox fx:id="lcheck" mnemonicParsing="false" onAction="#showltext"
+                                                  prefHeight="37.0" prefWidth="88.0" text="Late">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </CheckBox>
+                                        <CheckBox fx:id="echeck" mnemonicParsing="false" onAction="#showetext"
+                                                  prefHeight="47.0" prefWidth="83.0" text="Excused">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </CheckBox>
+                                        <CheckBox fx:id="ucheck" mnemonicParsing="false" onAction="#showutext"
+                                                  prefHeight="33.0" prefWidth="90.0" text="Unexcused">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </CheckBox>
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <TextField fx:id="presentval" prefHeight="5.0" prefWidth="100.0"
+                                                   promptText="Present" visible="false">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </TextField>
+                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="15.0"
+                                                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0"/>
+                                        <TextField fx:id="lateval" promptText="Late" visible="false">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </TextField>
+                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="15.0"
+                                                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0"/>
+                                        <TextField fx:id="excusedval" promptText="Excused" visible="false">
+                                            <font>
+                                                <Font name="Century" size="13.0"/>
+                                            </font>
+                                        </TextField>
+                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="15.0"
+                                                   stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0"/>
+                                        <TextField fx:id="unexcusedval" promptText="Unexcused" visible="false">
+                                            <font>
+                                                <Font name="Century" size="12.0"/>
+                                            </font>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+                            </items>
+                            <effect>
+                                <Blend/>
+                            </effect>
+                        </SplitPane>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="62.0" prefWidth="607.0"
+              BorderPane.alignment="TOP_CENTER">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="60.0" stroke="BLACK"
+                           strokeType="INSIDE" strokeWidth="0.0" width="250.0" HBox.hgrow="ALWAYS"/>
+                <VBox alignment="BOTTOM_CENTER" prefHeight="132.0" prefWidth="106.0">
+                    <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                onAction="#EditRecords" prefHeight="23.0" prefWidth="105.0" text="Edit Record"
+                                VBox.vgrow="ALWAYS">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="20.0" stroke="BLACK"
+                                   strokeType="INSIDE" strokeWidth="0.0" width="106.0"/>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#BackToHomePage" prefHeight="16.0"
+                                prefWidth="106.0" text="Back ">
+                            <font>
+                                <Font name="Century" size="12.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="35.0"/>
+                    </HBox.margin>
+                </VBox>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="60.0" stroke="BLACK"
+                           strokeType="INSIDE" strokeWidth="0.0" width="250.0" HBox.hgrow="ALWAYS"/>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: azure;"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.TutorPageController">
+    <top>
+        <Label fx:id="TitleLabel" alignment="CENTER" prefHeight="36.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="Century" size="12.0"/>
+            </font>
+        </Label>
+    </top>
+    <center>
+        <TableView fx:id="table" prefHeight="320.0" prefWidth="508.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="rnocol" prefWidth="117.00000154972076" text="Roll Number"/>
+                <TableColumn fx:id="presentcol" prefWidth="96.9999771118164" text="Present"/>
+                <TableColumn fx:id="latecol" prefWidth="84.20001220703125" text="Late"/>
+                <TableColumn fx:id="excusedcol" prefWidth="87.0" text="Excused"/>
+                <TableColumn fx:id="unexcusedcol" prefWidth="106.800048828125" text="Unexcused"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </center>
+    <left>
+        <VBox prefHeight="364.0" prefWidth="107.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="129.0" text="Course">
+                    <font>
+                        <Font name="Century" size="12.0"/>
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="subject" prefWidth="150.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="19Z301"/>
+                            <String fx:value="19Z302"/>
+                            <String fx:value="19Z303"/>
+                            <String fx:value="19Z304"/>
+                            <String fx:value="19Z305"/>
+                            <String fx:value="19Z306"/>
+                            <String fx:value="19Z310"/>
+                            <String fx:value="19Z311"/>
+                            <String fx:value="19K312"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+                <Label alignment="CENTER" prefHeight="26.0" prefWidth="123.0" text="Month">
+                    <font>
+                        <Font name="Century" size="12.0"/>
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="month" prefWidth="150.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="October"/>
+                            <String fx:value="September"/>
+                            <String fx:value="August"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="18.0" stroke="BLACK"
+                           strokeType="INSIDE" strokeWidth="0.0" width="111.0"/>
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#DisplayRecords"
+                        prefHeight="26.0" prefWidth="123.0" text="Get Records">
+                    <font>
+                        <Font name="Century" size="12.0"/>
+                    </font>
+                </Button>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="36.0" stroke="BLACK"
+                           strokeType="INSIDE" strokeWidth="0.0" width="110.0"/>
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#EditRecords" prefHeight="26.0"
+                        prefWidth="112.0" text="Edit Records">
+                    <font>
+                        <Font name="Century" size="12.0"/>
+                    </font>
+                </Button>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="54.0" stroke="BLACK"
+                           strokeType="INSIDE" strokeWidth="0.0" width="110.0"/>
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0"
+                        prefWidth="122.0" text="Log Out">
+                    <font>
+                        <Font name="Century" size="12.0"/>
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+</BorderPane>

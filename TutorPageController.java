@@ -16,23 +16,23 @@ import java.io.IOException;
 import java.sql.*;
 
 public class TutorPageController {
-    @FXML
+    //creating required objects
     public TableView<Student> table;
-    @FXML
+
     public TableColumn<String, String> rnocol;
-    @FXML
+
     public TableColumn<String, Integer> presentcol;
-    @FXML
+
     public TableColumn<String, Integer> latecol;
-    @FXML
+
     public TableColumn<String, Integer> excusedcol;
-    @FXML
+
     public TableColumn<String, Integer> unexcusedcol;
-    @FXML
-    public ChoiceBox month;
-    @FXML
-    public ChoiceBox subject;
-    @FXML
+
+    public ChoiceBox month; //shows a set of months and allows the user to select a single choice
+
+    public ChoiceBox subject; //shows a set of subjects and allows the user to select a single choice
+
     Label TitleLabel;
 
     Stage dialogStage = new Stage();
@@ -44,19 +44,19 @@ public class TutorPageController {
         String sub = "";
         String mon = "";
 
-        sub = (String) subject.getValue();
+        sub = (String) subject.getValue(); //subject and month are retrieved from event
         mon = (String) month.getValue();
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "Mridula56");
-            Statement s = con.createStatement();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "Mridula56");  //connection is established to MySQL database via JDBC
+            Statement s = con.createStatement();    //creates a statement that needs to be passed
             String getrec = "Select * from " + sub + " where month = '" + mon + "'";
-            ResultSet rs = s.executeQuery(getrec);
-            while (rs.next()) {
+            ResultSet rs = s.executeQuery(getrec);  //query is executed using statement s and result is saved in ResultSet
+            while (rs.next()) { //next() throws SQLException
                 Student o = new Student(sub, mon, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(1));
-                list.add(o);
+                list.add(o);    //adds the details of a particular student as rows in the table displayed
             }
-            try {
+            try {   //set properties to cells of each column of the table
                 rnocol.setCellValueFactory(new PropertyValueFactory<>("Rollnum"));
                 presentcol.setCellValueFactory(new PropertyValueFactory<>("Present"));
                 latecol.setCellValueFactory(new PropertyValueFactory<>("Late"));
@@ -64,15 +64,14 @@ public class TutorPageController {
                 unexcusedcol.setCellValueFactory(new PropertyValueFactory<>("Unexcused"));
                 table.setItems(list);
                 rs.close();
-            } catch (Exception e) {
+            } catch (Exception e) { //Exception is handled
                 e.printStackTrace();
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException throwables) { //SQLException thrown by next()
             throwables.printStackTrace();
         }
-
     }
-
+    //to set label for the frame
     public void setLabelText() {
         TitleLabel.setText("Attendance Viewer For CSE G2");
     }
@@ -82,7 +81,7 @@ public class TutorPageController {
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
             Node node = (Node) event.getSource();
             dialogStage = (Stage) node.getScene().getWindow();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EditRecordPage.fxml")));
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EditRecordPage.fxml")));//opens EditRecordPage
             dialogStage.setScene(scene);
             dialogStage.setTitle("Attendance Management System");
             dialogStage.show();
@@ -93,7 +92,7 @@ public class TutorPageController {
 
     public void logOut(ActionEvent event) throws IOException {
         Stage dialogStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("RoleSelect.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("RoleSelect.fxml")); //redirects to RoleSelect page
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);

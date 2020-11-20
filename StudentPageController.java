@@ -15,21 +15,21 @@ import java.io.IOException;
 import java.sql.*;
 
 public class StudentPageController {
-    @FXML
+   //creating required objects
     public TableView<Subject> Table = new TableView<Subject>();
-    @FXML
+  
     public Label display;
-    @FXML
+  
     public TableColumn<Subject, String> subjectcol;
-    @FXML
+
     public TableColumn<Subject, Integer> presentcol;
-    @FXML
+    
     public TableColumn<Subject, Integer> latecol;
-    @FXML
+   
     public TableColumn<Subject, Integer> excusedcol;
-    @FXML
+   
     public TableColumn<Subject, Integer> unexcusedcol;
-    @FXML
+  
     public TableColumn<Subject, String> monthcol;
 
     String studrno;
@@ -47,33 +47,33 @@ public class StudentPageController {
 
     ObservableList<Subject> list = FXCollections.observableArrayList();
 
-
+ //default constructor
     public StudentPageController() throws SQLException {
     }
-
+//function executed when display record button is clicked.
     public void DisplayRecords(ActionEvent actionEvent) {
         String sub = "";
         String mon = "";
-
+//stores value selected from the combo box by a student 
         sub = subject.getValue();
         mon = month.getValue();
         String subjectname = setsubjectname(sub);
-
+//create table for each subject chosen
         String tablename = sub;
-
+//sql commands to read required details from database
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "Mridula56");
             Statement s = con.createStatement();
             String getrec = "Select * from " + tablename + " where month = '" + mon + "' and rno='" + studrno + "'";
             ResultSet rs = s.executeQuery(getrec);
             while (rs.next()) {
-                if (rs.getString(2).equals(studrno)) ;
+                if (rs.getString(2).equals(studrno)) ;      //check whether given roll number exists(is in database)
                 {
                     Subject o = new Subject(subjectname, mon, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-                    list.add(o);
+                    list.add(o);    //adds the details of a particukar student as rows in the table displayed
                 }
             }
-            try {
+            try {    //set properties to cells of each column of the table
                 monthcol.setCellValueFactory(new PropertyValueFactory<>("Monthname"));
                 subjectcol.setCellValueFactory(new PropertyValueFactory<>("Subname"));
                 presentcol.setCellValueFactory(new PropertyValueFactory<>("Present"));
@@ -82,16 +82,16 @@ public class StudentPageController {
                 unexcusedcol.setCellValueFactory(new PropertyValueFactory<>("Unexcused"));
                 Table.setItems(list);
                 rs.close();
-            }catch (Exception e){
+            }catch (Exception e){    //to catch if any exception occurs
                 e.printStackTrace();
             }
-        }
+        }   //to catch if any SQL error is thrown
          catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
     }
-
+//a function to return subject name correspoding to subject code chosen
     public String setsubjectname(String sname){
         String sn = new String();
         if (sname.equals("19Z301")) {
@@ -115,12 +115,12 @@ public class StudentPageController {
         }
         return sn;
     }
-
+//to set label for the frame.Ladel is the students roll number
     public void setLabelText(String rollnum) {
         studrno = rollnum;
         TitleLabel.setText(rollnum + " Attendance Viewer");
     }
-
+//log out function to redirect back to role select frame
     public void logOut(ActionEvent event) throws IOException {
         Stage dialogStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("RoleSelect.fxml"));

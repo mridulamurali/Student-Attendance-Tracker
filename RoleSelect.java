@@ -16,8 +16,10 @@ public class RoleSelect {
     private RadioButton tutor;
     @FXML
     private RadioButton student;
+    
     private Stage dialogStage;
 
+    //method describing event to occur when the Submit button is pressed, redirecting to appropriate Login page
     public void GoToLoginPage(ActionEvent event) throws IOException {
 
         Node node = (Node) event.getSource();

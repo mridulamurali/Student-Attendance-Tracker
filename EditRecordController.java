@@ -15,33 +15,34 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class EditRecordController {
-    @FXML
-    public Label Title;
-    @FXML
+    //create fields for components described in .fxml file
     public CheckBox pcheck;
-    @FXML
+
+    public Label Title;
+
     public CheckBox lcheck;
-    @FXML
+
     public CheckBox echeck;
-    @FXML
+
     public CheckBox ucheck;
-    @FXML
+
     public SplitPane splitpane;
-    @FXML
+
     public TextField presentval;
-    @FXML
+
     public TextField lateval;
-    @FXML
+
     public TextField excusedval;
-    @FXML
+
     public TextField unexcusedval;
-    @FXML
+
     public ChoiceBox subject;
-    @FXML
+
     public TextField rollno;
-    @FXML
+
     public ChoiceBox month;
 
+    //variables to store altered values
     int p, l, e, u;
     String subname;
     String rollnum;
@@ -51,6 +52,8 @@ public class EditRecordController {
     public EditRecordController() {
     }
 
+    /*set visibility of textboxes that take in new value of parameter only if the checkbox for its
+    * corresponding parameter is checked*/
     public void showptext(ActionEvent event) {
         presentval.setVisible(pcheck.isSelected());
     }
@@ -67,11 +70,14 @@ public class EditRecordController {
         unexcusedval.setVisible(ucheck.isSelected());
     }
 
+    //method that is called when Edit Records button is pressed
     public void EditRecords(ActionEvent event) {
+        //get values of roll number, subject name, and month of the record to be altered
         rollnum = rollno.getText();
         subname = (String) subject.getValue();
         mon = (String) month.getValue();
 
+        //based on the parameters that have been selected to have a new value, get the new value and store it
         if (pcheck.isSelected()) {
             p = Integer.parseInt(presentval.getText());
             parameterflag[0] = 1;
@@ -89,15 +95,18 @@ public class EditRecordController {
             parameterflag[3] = 1;
         }
 
+        //update command to MySQL table is made based on the values taken from the user
         String sql = "UPDATE " + subname + " set";
         sql = assignparameters(sql);
         sql = sql + " where rno = '" + rollnum + "' and month = '" + mon + "' ";
-        System.out.println(sql);
 
+
+        //establish connection with the database and send the string prepared as argument to executeUpdate method to alter table
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "Mridula56");
             Statement s = con.createStatement();
             s.executeUpdate(sql);
+            //display information that table was altered successfully
             infoBox();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -105,6 +114,7 @@ public class EditRecordController {
 
     }
 
+    //method to append to command based on selected parameters
     private String assignparameters(String sql) {
         if (parameterflag[0] == 1) {
             sql = sql + " P = " + p;
@@ -121,6 +131,7 @@ public class EditRecordController {
         return sql;
     }
 
+    //method defining the inforBox displayed upon successful alteration of records
     public static void infoBox() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Record has been altered");
@@ -128,6 +139,7 @@ public class EditRecordController {
         alert.showAndWait();
     }
 
+    //method to describe action of the back button that leads to the tutor's home page
     public void BackToHomePage(ActionEvent event) throws IOException {
         Stage dialogStage = new Stage();
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
